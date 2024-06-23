@@ -1,0 +1,7 @@
+---
+- name: Install and configure web server
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install latest version of Apache
+      apt: name=apache2 update_cache=yes state=latest

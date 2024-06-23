@@ -1,0 +1,17 @@
+---
+- name: Playbook to deploy apache web service on the webserver
+  hosts: default
+  become: true
+  tasks:
+  - name: Install latest version of Apache
+    apt: name=apache2 update_cache=yes state=latest
+  
+  - name: Copy index file to the web server
+    ansible.builtin.copy:
+      src: index.html
+      dest: /var/www/html
+
+  - name: Restart service httpd
+    ansible.builtin.service:
+      name: apache2
+      state: restarted

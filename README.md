@@ -1,2 +1,2 @@
-# Architecting-and-Implementing-DevOps-for-Infrastructure-Management-in-Azure
-Code repository for Architecting and Implementing DevOps for Infrastructure Management in Azure
+# Practical-Azure-Infrastructure-Management
+Practical Azure Infrastructure Management, Published by Packt
