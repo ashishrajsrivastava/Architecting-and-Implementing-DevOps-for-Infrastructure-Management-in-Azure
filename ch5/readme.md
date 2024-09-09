@@ -1,59 +1,62 @@
-# Chapter 5
+# Chapter 6
 
-## Deploy VM with Availability Zone
-
-In the root module main.tf under ch5 directory, place the following module declration to create virtual machine with availability sets
-
+## Create Container Apps environment
 ```
-module "testvm" {
-    source                  = "./modules/webvm"
-    resource_group_location = "westeurope"
-    resource_group_name     = "eu-vm-app-infra-test-rg"
-    vmprefix                = "webvm"
-    envName = "p"
-    vmcount = 2
+module "container_env" {
+source = "./modules/ace"
+ ace_name = "bookaceeu"
+ ace_resource_group_name = "ace-infra-eu-rg"
+ location = "westeurope"
 }
 ```
-
-## Deploy VM with Availbility Sets
- To deploy multiple virtual machines with availability sets, update main.tf in root module of ch5 directory as following
- ```
-module "testvm" {
-    source                  = "./modules/webvm-avset"
-    resource_group_location = "westeurope"
-    resource_group_name     = "eu-vm-app-infra-test-rg"
-    vmprefix                = "webvm"
-    envName = "p"
-    vmcount = 2
+## Create Container App with image from a public repository
+```
+module "public_imaage_aca" {
+    source = "./modules/aca"
+    aca_name = "iacacapubimg"
+    ace_name = module.container_env.ace_name
+    ace_resource_group_name = module.container_env.ace_rg_name
+    location = "westeurope"
+    container_info = {
+      image = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
+      name = "picontainer"
+      port = 80
+      public = true
+    }
+    depends_on = [ module.container_env ]
 }
 ```
-
-## Deploy VM with Backup policy
-
-Deploy a azure virtual machine configured with backup policy. Update main.tf in root module of ch5 directory as following
-
+## Create Container Apps Repository
 ```
-module "testvm" {
-    source                  = "./modules/webvm-backup"
-    resource_group_location = "westeurope"
-    resource_group_name     = "eu-vm-app-infra-test-rg"
-    vmprefix                = "webvm"
-    envName = "p"
-    vmcount = 1
+module "container_registry" {
+    source = "./modules/acr"
+    acr_name = "iacbookacr"
+    acr_resource_group_name = "iac-book-acr-rg"
+    location = "westeurope"
 }
-
 ```
-## Deploy Virtual Machine with Disaster Recovery using Azure Recovery Services Vault
+## Build Container Image and push to ACR
 ```
-module "testvm" {
-    source                  = "./modules/webvm-dr"
-    source_resource_group_location = "eastus"
-    source_resource_group_name     = "na-vm-primary-infra-test-rg"
-    vmprefix                = "webvm"
-    envName = "t"
-    target_resource_group_location = "westus"
-    target_resource_group_name     = "na-vm-secondary-infra-test-rg"
-    staging_resource_group_location = "eastus"
-    staging_resource_group_name     = "na-vm-staging-infra-test-rg"
+az acr build --registry iacbookacr --image "bookapp/demo:v1" --file bookapp/bookapp/Dockerfile bookapp 
+```
+## Deploy Container Apps with image from ACR
+```
+module "private_image_aca" {
+    source = "./modules/aca"
+    aca_name = "iacacapriimg"
+    ace_name = module.container_env.ace_name
+    ace_resource_group_name = module.container_env.ace_rg_name
+    location = "westeurope"
+    acr_name = module.container_registry.acr_name
+    acr_resource_group_name = module.container_registry.acr_rg_name
+    umi_name = module.container_registry.umi_name
+    container_info = {
+      image = "iacbookacr.azurecr.io/bookapp/demo:v1"
+      name = "pricontainer"
+      port = 80
+      public = true
+    }
+    depends_on = [ module.container_env,
+    module.container_registry]
 }
 ```
