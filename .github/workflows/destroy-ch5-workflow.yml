@@ -1,4 +1,4 @@
-name: 'Destroy Chapter 6'
+name: 'Destroy Chapter 5'
 on:
  workflow_dispatch:
 
@@ -16,7 +16,7 @@ env:
 jobs:
   destroy-bookapp-container:
     name: 'Destroy Bookapp Container App'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: prod
     defaults:
       run:
