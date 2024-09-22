@@ -1,10 +1,10 @@
 name: 'Deploy Chapter 3'
 on:
- push:
-  branches: ["main"]
+# push:
+#  branches: ["main"]
  workflow_dispatch:
- pull_request:
-  branches: ["main"]
+# pull_request:
+#  branches: ["main"]
 
 permissions:
   id-token: write
