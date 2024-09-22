@@ -104,3 +104,4 @@ ch5/bookapp/obj/*
 ch5/bookapp/bookapp/bin/*
 ch5/bookapp/bookapp/obj/*
 
+ch5/github-runner/variables.tf
