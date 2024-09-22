@@ -24,7 +24,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./ch6
+        working-directory: ch6
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
