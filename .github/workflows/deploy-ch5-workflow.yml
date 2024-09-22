@@ -19,7 +19,7 @@ env:
 
 jobs:
   terraform-unit-tests:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     name: 'Terraform Unit Tests'
     defaults:
       run:
