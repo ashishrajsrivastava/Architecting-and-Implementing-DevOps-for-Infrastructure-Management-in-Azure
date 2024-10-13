@@ -1,0 +1,1 @@
+- Make sure register Microsoft.DevCenter

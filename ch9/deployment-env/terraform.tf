@@ -9,9 +9,10 @@ terraform {
     resource_group_name  = "iac-terraform-state-rg"
     storage_account_name = "iacbookstate2023"
     container_name       = "alzcoretfstate"
-    key                  = "prod.alz.terraform.tfstate"  
+    key                  = "demo.ade.terraform.tfstate"  
   }
 }
 provider "azurerm" {
+    subscription_id = "996ec04d-f171-4281-a17b-ca0209711e2b"
   features {}
 }

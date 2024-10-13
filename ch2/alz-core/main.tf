@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.74.0"
+      version = ">= 3.107.0"
     }
   }
   backend "azurerm" {
@@ -21,7 +21,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "5.0.3"
+  version = "6.0.0"
 
   default_location = "westeurope"
 

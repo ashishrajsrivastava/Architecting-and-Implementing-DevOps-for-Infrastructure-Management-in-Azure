@@ -3,7 +3,7 @@ data "azurerm_client_config" "core" {}
 
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "5.0.3"
+  version = "6.0.0"
 
   default_location = "westeurope"
 
