@@ -105,3 +105,7 @@ ch5/bookapp/bookapp/bin/*
 ch5/bookapp/bookapp/obj/*
 
 ch5/github-runner/variables.tf
+ch9/deployment-env/.infracost/*
+ch9/deployment-env/.pluralith/*
+ch8/terraform/.infracost/*
+ch8/terraform/.infracost/*

@@ -15,5 +15,10 @@ variable "deployment_env_name_env_type" {
 
 variable "userId" {
     description = "User object ID is required to assign the necessary role permission to create an environment."
+    default = "729ab97b-bde0-4363-a2ec-cabb1728ca1f"
+}
+
+variable "adminUserId" {
+    description = "User object ID is required to assign the necessary role permission to administer environments."
     default = "34244a1e-112c-407f-b3de-73c25a4df2a5"
 }

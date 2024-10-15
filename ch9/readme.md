@@ -1,1 +1,3 @@
 - Make sure register Microsoft.DevCenter
+- Create a KV for github PAT
+- Assign KV Secret Reader role to dev center (Read https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/deployment-environments/how-to-configure-catalog.md#github-repo-with-pat)
