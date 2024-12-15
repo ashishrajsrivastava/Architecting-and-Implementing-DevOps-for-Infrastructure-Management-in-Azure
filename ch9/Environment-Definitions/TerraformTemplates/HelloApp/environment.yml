@@ -1,0 +1,11 @@
+name: HelloApp
+summary: This is a deployment of a Azure Container App using Terraform.
+description: Deploys a Container App within a Container App Environment with extenal ingress.
+templatePath: main.tf
+parameters:
+- id: "container_app_name"
+  name: "Name of the Container App"
+  description: "Name of the Container App"
+  type: "string"
+  default: "helloadpapp"
+runner: Terraform
