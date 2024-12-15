@@ -8,4 +8,4 @@ parameters:
   description: "Name of the Container App"
   type: "string"
   default: "helloadpapp"
-runner: Terraform
+runner: "adpshare.azurecr.io/tfimage:latest"
