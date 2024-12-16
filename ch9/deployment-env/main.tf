@@ -74,6 +74,7 @@ resource "azurerm_dev_center_project" "dc_demo_project" {
     location = azurerm_resource_group.deployment_env_rg.location
     dev_center_id = azurerm_dev_center.dc.id
     resource_group_name = azurerm_resource_group.deployment_env_rg.name
+    maximum_dev_boxes_per_user = 2
 }
 
 resource "azurerm_role_assignment" "env_creator_user_role_assignment" {
