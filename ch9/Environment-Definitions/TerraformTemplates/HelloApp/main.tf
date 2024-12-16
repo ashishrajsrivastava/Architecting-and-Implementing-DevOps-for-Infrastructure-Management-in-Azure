@@ -1,6 +1,6 @@
 resource "azurerm_container_app_environment" "ade_ace" {
   name                       = "${var.container_app_name}-ace"
-  location                   = azurerm_resource_group.ade_ace_rg.location
+  location                   = "eastus"
 }
 
 resource "azurerm_container_app" "ade_aca" {
