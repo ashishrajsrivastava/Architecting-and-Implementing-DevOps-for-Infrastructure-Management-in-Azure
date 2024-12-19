@@ -1,11 +1,21 @@
+# Deploy resource Group
+# ------------------------------------------------------------------------------------------------------
+variable "resource_group_name" {}
+
+data "azurerm_resource_group" "rg" {
+  name = var.resource_group_name
+}
+
 resource "azurerm_container_app_environment" "ade_ace" {
   name                       = "${var.container_app_name}-ace"
-  location                   = "eastus"
+  location                   = data.azurerm_resource_group.rg.location
+  resource_group_name        = data.azurerm_resource_group.rg.name
 }
 
 resource "azurerm_container_app" "ade_aca" {
   name                         = "${var.container_app_name}"
   container_app_environment_id = azurerm_container_app_environment.ade_ace.id
+  resource_group_name          = data.azurerm_resource_group.rg.name
   revision_mode                = "Single"
 
   template {
